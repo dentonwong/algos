@@ -16,7 +16,7 @@ function getMinimumMoves(price, k) {
 
   while (queue.length > 0) {
     const { array, index, moves } = queue.shift();
-
+    array.sort((a, b) => a - b);
     const currentMedian = getMedian(array);
 
     if (currentMedian === k) {
@@ -25,7 +25,7 @@ function getMinimumMoves(price, k) {
 
     if (index + 1 < n) {
       queue.push({ array: [...array], index: index + 1, moves: moves });
-      
+
       // Increment the price of the next item
       const newArrayInc = [...array];
       newArrayInc[index]++;
