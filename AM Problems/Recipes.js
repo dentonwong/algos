@@ -7,44 +7,45 @@ Return a list of all the recipes that you can create. You may return the answer 
 Note that two recipes may contain each other in their ingredients.
 */
 
-function findAllRecipes(recipes, ingredients, supplies){
+// function findAllRecipes(recipes, ingredients, supplies){
   
-  const ingredMap = new Map();
-  const inDegrees = new Map();
+//   const ingredMap = new Map();
+//   const inDegrees = new Map();
 
-  for(let i in recipes){
+//   for(let i in recipes){
 
-    for(let ing of ingredients[i]){
-      if(ingredMap.has(ing))
-        ingredMap.get(ing).push(recipes[i])
-      else
-        ingredMap.set(ing, [recipes[i]])
-      inDegrees.set(recipes[i], inDegrees.get(recipes[i]) + 1 || 1)
-    }
-  }
+//     for(let ing of ingredients[i]){
+//       if(ingredMap.has(ing))
+//         ingredMap.get(ing).push(recipes[i])
+//       else
+//         ingredMap.set(ing, [recipes[i]])
+//       inDegrees.set(recipes[i], inDegrees.get(recipes[i]) + 1 || 1)
+//     }
+//   }
 
 
-  const queue = [...supplies];
-  const output = [];
+//   const queue = [...supplies];
+//   const output = [];
 
-  while(queue.length > 0){
+//   while(queue.length > 0){
 
-    const topIng = queue.shift();
+//     const topIng = queue.shift();
 
-    if(ingredMap.has(topIng)){
+//     if(ingredMap.has(topIng)){
 
-      for(let rcp of ingredMap.get(topIng)){
+//       for(let rcp of ingredMap.get(topIng)){
 
-        inDegrees.set(rcp, inDegrees.get(rcp) - 1);
-        if(inDegrees.get(rcp) == 0){
-          queue.push(rcp);
-          output.push(rcp);
-        }
-      }
-    }
-  }
-  return output;
-}
+//         inDegrees.set(rcp, inDegrees.get(rcp) - 1);
+//         if(inDegrees.get(rcp) == 0){
+//           queue.push(rcp);
+//           output.push(rcp);
+//         }
+//       }
+//     }
+//   }
+//   return output;
+// }
+
 
 //Test cases
 // let recipes = ["bread"], ingredients = [["yeast","flour"]], supplies = ["yeast","flour","corn"]
@@ -53,6 +54,6 @@ function findAllRecipes(recipes, ingredients, supplies){
 // let recipes = ["bread","sandwich"], ingredients = [["yeast","flour"],["bread","meat"]], supplies = ["yeast","flour","meat"]
 // console.log(findAllRecipes(recipes, ingredients, supplies))
 // //Should be ["bread","sandwich"]
-let recipes = ["bread","sandwich","burger"], ingredients = [["yeast","flour"],["bread","meat"],["sandwich","meat","bread"]], supplies = ["yeast","flour","meat"]
-console.log(findAllRecipes(recipes, ingredients, supplies))
+// let recipes = ["bread","sandwich","burger"], ingredients = [["yeast","flour"],["bread","meat"],["sandwich","meat","bread"]], supplies = ["yeast","flour","meat"]
+// console.log(findAllRecipes(recipes, ingredients, supplies))
 //Should be ["bread","sandwich","burger"]
