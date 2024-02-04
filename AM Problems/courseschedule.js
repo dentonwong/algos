@@ -59,3 +59,13 @@ function isValidCourseSchedule(n, prerequisites) {
   }
   return topoSort(graph);
 }
+
+//Test cases
+
+// let n = 2, prerequisites = [[0, 1]]
+// console.log(isValidCourseSchedule(n, prerequisites))
+// //Should be true
+
+// let n = 2, prerequisites = [[0, 1], [1, 0]]
+// console.log(isValidCourseSchedule(n, prerequisites))
+// //Should be false
