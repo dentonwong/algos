@@ -5,6 +5,7 @@ Note: You can only move either down or right at any point in time.
 
 */
 
+/*
 function minPathSum(grid){
   const rowL = grid.length;
   const colL = grid[0].length;
@@ -56,6 +57,55 @@ function minPathSum(grid){
   }
 
   return bfs([0,0]);
+}
+*/
+
+function minPathSum(grid){
+
+  function getNeighbors(node){
+    const neighbors = [];
+    const [r , c] = node;
+    const deltaRow = [0, 1];
+    const deltaCol = [1, 0];
+
+    for(let i in deltaRow){
+      const newRow = r + deltaRow[i];
+      const newCol = c + deltaCol[i];
+      
+      if(0<= newRow && newRow < grid.length && 0<= newCol && newCol < grid[0].length){
+        neighbors.push([newRow, newCol])
+      }
+    }
+
+    return neighbors;
+  }
+
+  const queue = [[0 , 0]];
+  const sumMap = new Map();
+  sumMap.set("0, 0", 1);
+
+  while(queue.length > 0){
+
+    const node = queue.shift();
+    const [r, c] = node;
+
+    for(let neighbor of getNeighbors(node)){
+      const [newR, newC] = neighbor;
+      if(!sumMap.has(`${newR}, ${newC}`))
+        sumMap.set(`${newR}, ${newC}`, sumMap.get(`${node[0]}, ${node[1]}`) + grid[newR][newC])
+      else{
+        const curr = sumMap.get(`${newR}, ${newC}`);
+        
+        sumMap.set(`${newR}, ${newC}`, Math.min(curr, sumMap.get(`${node[0]}, ${node[1]}`) + grid[newR][newC]))
+      }
+      queue.push([newR, newC])
+    }
+
+
+  }
+  //console.log(sumMap)
+
+  return sumMap.get(`${grid.length - 1}, ${grid[0].length - 1}`);
 }
 
 
